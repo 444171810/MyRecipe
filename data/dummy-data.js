@@ -21,7 +21,7 @@ export const MEALS = [
     'Spaghetti with Tomato Sauce',
     'affordable',
     'simple',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/800px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
+    'https://www.archanaskitchen.com/images/archanaskitchen/World_Pastas_Pizzas/The_Best_Spicy_Spaghetti_Bolognese_Recipe-1.jpg',
     20,
     [
       '4 Tomatoes',
