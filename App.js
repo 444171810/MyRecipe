@@ -4,6 +4,7 @@ import CategoriesScreen from './src/screens/CategoriesScreen';
 import MealsOverviewScreen from './src/screens/MealsOverviewScreen';
 import MealDetailScreen from './src/screens/MealDetailScreen';
 import FavoritesScreen from './src/screens/FavoritesScreen';
+import FavoritesContextProvider from './src/store/context/favoritesContext';
 import Colors from './src/consts/colors';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -18,8 +19,6 @@ function DrawerNavigator() {
   return (
     <Drawer.Navigator
       screenOptions={{
-        //contentStyle: { backgroundColor: Colors.yellow200 },
-        //drawerContentStyle: { backgroundColor: Colors.yellow200 },
         sceneContainerStyle: { backgroundColor: Colors.yellow200 },
         headerStyle: { backgroundColor: Colors.brown },
         headerTitleStyle: { color: Colors.white },
@@ -57,32 +56,26 @@ export default function App() {
   return (
     <>
       <StatusBar />
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Categories"
-          screenOptions={{
-            contentStyle: { backgroundColor: Colors.yellow200 },
-            headerStyle: { backgroundColor: Colors.brown },
-            headerTitleStyle: { color: Colors.white },
-          }}
-        >
-          <Stack.Screen
-            name="HomeDrawer"
-            options={{ title: 'Home', headerShown: false }}
-            component={DrawerNavigator}
-          />
-          <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
-          <Stack.Screen
-            name="MealDetail"
-            component={MealDetailScreen}
-            // options={{
-            //   headerRight: () => {
-            //     return <Button title='Like Me'  />;
-            //   },
-            // }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <FavoritesContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Categories"
+            screenOptions={{
+              contentStyle: { backgroundColor: Colors.yellow200 },
+              headerStyle: { backgroundColor: Colors.brown },
+              headerTitleStyle: { color: Colors.white },
+            }}
+          >
+            <Stack.Screen
+              name="HomeDrawer"
+              options={{ title: 'Home', headerShown: false }}
+              component={DrawerNavigator}
+            />
+            <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
+            <Stack.Screen name="MealDetail" component={MealDetailScreen} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavoritesContextProvider>
     </>
   );
 }

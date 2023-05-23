@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, Image } from 'react-native';
-import colors from '../consts/colors';
+import colors from '../../consts/colors';
 import { Button } from '@rneui/themed';
 import { useNavigation } from '@react-navigation/native';
-import MealQuickInfo from './MealQuickInfo';
+import MealQuickInfo from '../MealQuickInfo';
 
 const MealItem = (props) => {
   const navigation = useNavigation();

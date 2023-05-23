@@ -17,7 +17,8 @@ export default List;
 
 const styles = StyleSheet.create({
   list: {
-    marginLeft: 40,
+    marginHorizontal: 40,
+    marginVertical: 5,
   },
   listText: {
     fontSize: 20,
