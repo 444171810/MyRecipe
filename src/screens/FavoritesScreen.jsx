@@ -1,12 +1,14 @@
 import { StyleSheet, View, Text } from 'react-native';
-import { useContext } from 'react';
-import { FavoritesContext } from '../store/context/favoritesContext';
+// import { useContext } from 'react';
+// import { FavoritesContext } from '../store/context/favoritesContext';
+import { useSelector } from 'react-redux';
 import MealsList from '../components/MealsList/MealsList';
 import { MEALS } from '../data/dummy-data';
 import colors from '../consts/colors';
 
 const FavoritesScreen = () => {
-  const { favoriteIds } = useContext(FavoritesContext);
+  //const { favoriteIds } = useContext(FavoritesContext);
+  const favoriteIds = useSelector((state) => state.favorite.favoriteIds);
 
   const mealList = MEALS.filter((item) => favoriteIds.includes(item.id));
 

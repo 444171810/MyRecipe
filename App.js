@@ -4,7 +4,9 @@ import CategoriesScreen from './src/screens/CategoriesScreen';
 import MealsOverviewScreen from './src/screens/MealsOverviewScreen';
 import MealDetailScreen from './src/screens/MealDetailScreen';
 import FavoritesScreen from './src/screens/FavoritesScreen';
-import FavoritesContextProvider from './src/store/context/favoritesContext';
+//import FavoritesContextProvider from './src/store/context/favoritesContext';
+import { store } from './src/store/redux/store';
+import { Provider } from 'react-redux';
 import Colors from './src/consts/colors';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -56,7 +58,7 @@ export default function App() {
   return (
     <>
       <StatusBar />
-      <FavoritesContextProvider>
+      <Provider store={store}>
         <NavigationContainer>
           <Stack.Navigator
             initialRouteName="Categories"
@@ -75,7 +77,7 @@ export default function App() {
             <Stack.Screen name="MealDetail" component={MealDetailScreen} />
           </Stack.Navigator>
         </NavigationContainer>
-      </FavoritesContextProvider>
+      </Provider>
     </>
   );
 }

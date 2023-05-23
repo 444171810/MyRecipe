@@ -6,21 +6,27 @@ import Subtitle from '../components/MealDetail/Subtitle';
 import { useNavigation } from '@react-navigation/native';
 import { Icon } from '@rneui/themed';
 import { useContext } from 'react';
-import { FavoritesContext } from '../store/context/favoritesContext';
+//import { FavoritesContext } from '../store/context/favoritesContext';
+import { useSelector, useDispatch } from 'react-redux';
+import { addFavorite, removeFavorite } from '../store/redux/favoriteSlice';
 
 const MealDetailScreen = ({ route }) => {
   const { id, imageUrl, duration, complexity, affordability, title, ingredients, steps } =
     route.params;
   const navigation = useNavigation();
-  const { favoriteIds, addFavorite, removeFavorite } = useContext(FavoritesContext);
+  //const { favoriteIds, addFavorite, removeFavorite } = useContext(FavoritesContext);
+  const favoriteIds = useSelector((state) => state.favorite.favoriteIds);
+  const dispatch = useDispatch();
 
   const isFavorited = favoriteIds.includes(id);
 
   const likeHandler = useCallback(() => {
     if (!isFavorited) {
-      addFavorite(id);
+      //addFavorite(id);
+      dispatch(addFavorite(id));
     } else {
-      removeFavorite(id);
+      //removeFavorite(id);
+      dispatch(removeFavorite(id));
     }
   });
 
