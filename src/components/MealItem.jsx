@@ -1,8 +1,12 @@
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import colors from '../consts/colors';
 import { Button } from '@rneui/themed';
+import { useNavigation } from '@react-navigation/native';
+import MealQuickInfo from './MealQuickInfo';
 
-const MealItem = ({ title, imageUrl, duration, complexity, affordability }) => {
+const MealItem = (props) => {
+  const navigation = useNavigation();
+
   return (
     <Button
       style={styles.rootContainer}
@@ -17,16 +21,20 @@ const MealItem = ({ title, imageUrl, duration, complexity, affordability }) => {
       title={
         <View style={{ flex: 1 }}>
           <View style={{ flex: 1 }}>
-            <Text style={styles.title}>{title}</Text>
-            <Image style={styles.image} source={{ uri: imageUrl }} />
+            <Image style={styles.image} source={{ uri: props.imageUrl }} />
+            <Text style={styles.title}>{props.title}</Text>
           </View>
-          <View style={styles.infoContainer}>
-            <Text style={styles.infoText}>{duration}mins</Text>
-            <Text style={styles.infoText}>{complexity.toUpperCase()}</Text>
-            <Text style={styles.infoText}>{affordability.toUpperCase()}</Text>
-          </View>
+          <MealQuickInfo
+            duration={props.duration}
+            complexity={props.complexity}
+            affordability={props.affordability}
+          />
         </View>
-      }></Button>
+      }
+      onPress={() => {
+        navigation.navigate('MealDetail', props);
+      }}
+    ></Button>
   );
 };
 
@@ -46,14 +54,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 5,
-  },
-  infoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  infoText: {
-    paddingHorizontal: 8,
   },
   image: {
     width: '100%',

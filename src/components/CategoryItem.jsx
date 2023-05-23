@@ -7,13 +7,11 @@ const CategoryItem = ({ id, title, color, onPress }) => {
     <View style={[styles.itemWrapper, { backgroundColor: color }]}>
       <Pressable
         android_ripple={{ color: '#ffffff99' }}
-        style={({ pressed }) => [
-          styles.button,
-          pressed ? styles.buttonPressed : null,
-        ]}
+        style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]}
         onPress={() => {
           navigation.navigate('MealsOverview', { categoryId: id });
-        }}>
+        }}
+      >
         <View style={styles.innerContainer}>
           <Text style={styles.title}>{title}</Text>
         </View>
